@@ -16,7 +16,7 @@ const ExpensesSummary = ({ expenses, periodName }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    // borderRadius: 15,  
+    borderRadius: 15,  
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
