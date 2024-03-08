@@ -8,6 +8,7 @@ import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import { Ionicons } from '@expo/vector-icons'
 import IconButton from './components/UI/IconButton';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
 
@@ -15,6 +16,9 @@ export default function App() {
   const BottomTabs = createBottomTabNavigator()
 
   const ExpensesOverview = () => {
+
+    const navigation = useNavigation()
+
     return (
       <BottomTabs.Navigator
         screenOptions={{
@@ -27,7 +31,7 @@ export default function App() {
               icon='add'
               size={28}
               color='#fff'
-              onPress={() => {}}
+              onPress={() => {navigation.navigate('ManageExpense')}}
             />
           )
         }}
