@@ -3,11 +3,9 @@ import { View, Text } from "react-native"
 
 const AllExpenses = () => {
   return (
-    <View>
-        <ExpensesOutput 
-            expensesPeriod='Total'
-        />
-    </View>
+    <ExpensesOutput 
+        expensesPeriod='Total'
+    />
   )
 }
 

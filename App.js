@@ -7,6 +7,7 @@ import ManageExpenses from './screens/ManageExpenses';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import { Ionicons } from '@expo/vector-icons'
+import IconButton from './components/UI/IconButton';
 
 export default function App() {
 
@@ -21,6 +22,14 @@ export default function App() {
           headerTintColor: '#fff',
           tabBarStyle: { backgroundColor: '#000'},
           // tabBarActiveTintColor: '#fff'
+          headerRight: (color) => (
+            <IconButton 
+              icon='add'
+              size={28}
+              color='#fff'
+              onPress={() => {}}
+            />
+          )
         }}
       >
         <BottomTabs.Screen 

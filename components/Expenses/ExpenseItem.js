@@ -3,8 +3,12 @@ import { getFormattedDate } from "../../utils/date"
 
 const ExpenseItem = ({ expenses}) => {
 
+    const expensePressHandler = () => {
+
+    }
+
   return (
-    <Pressable>
+    <Pressable onPress={expensePressHandler}>
         <View style={styles.container}>  
             <View>  
                 <Text style={styles.description}>{expenses.description}</Text>
