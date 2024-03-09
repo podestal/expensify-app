@@ -7,7 +7,7 @@ const ExpensesList = ({ expenses }) => {
       data={expenses}
       renderItem={(itemData) => (
         <ExpenseItem
-          expenses={itemData.item}
+          expense={itemData.item}
         />
       )}
       keyExtractor={(item) => item.id}
