@@ -15,15 +15,15 @@ const ManageExpenses = ({ route, navigation }) => {
     })
 
     const deleteExpenseHandler = () => {
-
+        navigation.goBack()
     }
 
     const cancelHandler = () => {
-
+        navigation.goBack()
     }
 
     const confirmHandler = () => {
-
+        navigation.goBack()
     }
 
   return (

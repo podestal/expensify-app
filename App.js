@@ -9,6 +9,7 @@ import AllExpenses from './screens/AllExpenses';
 import { Ionicons } from '@expo/vector-icons'
 import IconButton from './components/UI/IconButton';
 import { useNavigation } from '@react-navigation/native';
+import ExpenseContextProvider from './context/expenses';
 
 export default function App() {
 
@@ -61,28 +62,30 @@ export default function App() {
   return (
       <>
         <StatusBar style="auto" />
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: '#000' },
-              headerTintColor: '#fff',
-              tabBarStyle: { backgroundColor: '#000'},
-            }}
-          >
-            <Stack.Screen 
-              name='ExpensesOverview' 
-              component={ExpensesOverview} 
-              options={{ headerShown: false }}  
-            />
-            <Stack.Screen 
-              name='ManageExpense' 
-              component={ManageExpenses}
-              options={{
-                title: 'Manage Expense'
+        <ExpenseContextProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerStyle: { backgroundColor: '#000' },
+                headerTintColor: '#fff',
+                tabBarStyle: { backgroundColor: '#000'},
               }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+            >
+              <Stack.Screen 
+                name='ExpensesOverview' 
+                component={ExpensesOverview} 
+                options={{ headerShown: false }}  
+              />
+              <Stack.Screen 
+                name='ManageExpense' 
+                component={ManageExpenses}
+                options={{
+                  title: 'Manage Expense'
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ExpenseContextProvider>
       </>
   );
 }
