@@ -70,6 +70,5 @@ const style = StyleSheet.create({
     button: {
         minWidth: 120,
         marginHorizontal: 8,
-        fontSize: 20,
     }
 })
