@@ -1,6 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from "react-native"
 
-const Input = ({ label, textInputConfig }) => {
+const Input = ({ label, textInputConfig, style }) => {
 
     const inputStyles = [styles.input]
 
@@ -9,7 +9,7 @@ const Input = ({ label, textInputConfig }) => {
     }
 
   return (
-    <View style={styles.inputContanier}>
+    <View style={[styles.inputContanier, style]}>
         <Text style={styles.label}>{label}</Text>
         <TextInput style={inputStyles} {...textInputConfig}/>
     </View>
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     inputContanier: {
         marginHorizontal: 4,
         marginVertical: 16,
+        // flex: 1,
     },
     label: {
         fontSize: 12,
@@ -30,7 +31,8 @@ const styles = StyleSheet.create({
     input: {
         padding: 6,
         fontSize: 18,
-        backgroundColor: '#bdc3c7'
+        backgroundColor: '#bdc3c7',
+        borderRadius: 10,
     },
     inputMultiline: {
         minHeight: 100,

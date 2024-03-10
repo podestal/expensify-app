@@ -7,7 +7,10 @@ import ExpenseForm from "../components/ManageExpense/ExpenseForm"
 
 const ManageExpenses = ({ route, navigation }) => {
 
-    const editedExpenseId = route.params?.expenseId
+    const editedExpenseId = route.params?.id
+    const amount = route.params?.amount
+    const date = route.params?.date
+    const description = route.params?.description
     const isEditing = !!editedExpenseId
     const { deleteExpense, addExpense, updateExpense } = useContext(ExpenseContext)
 
@@ -26,28 +29,21 @@ const ManageExpenses = ({ route, navigation }) => {
         navigation.goBack()
     }
 
-    const confirmHandler = () => {
+    const confirmHandler = (expense) => {
         if (isEditing) {
-            updateExpense(
-            editedExpenseId,
-            {
-                description: 'Test!!!',
-                amount: 29.99,
-                date: new Date('2024-03-09')
-            })
+            updateExpense(editedExpenseId, expense)
         } else {
-            addExpense({
-                description: 'Test',
-                amount: 19.99,
-                date: new Date('2024-03-08')
-            })
+            addExpense(expense)
         }
         navigation.goBack()
     }
 
   return (
     <View style={styles.container}>
-        <ExpenseForm />
+        <ExpenseForm 
+            confirmHandler={confirmHandler}
+            expense={{ amount, date, description }}
+        />
         <View style={styles.buttons}>
             <Button style={styles.button} onPress={cancelHandler}>Cancel</Button>
             <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
