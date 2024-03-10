@@ -1,12 +1,13 @@
-import { View, StyleSheet, Text, Button } from "react-native"
+import { View, StyleSheet, Text, ScrollView } from "react-native"
 import { useState } from "react"
 import Input from "./Input"
+import Button from "../UI/Button"
 
-const ExpenseForm = ({ confirmHandler, expense }) => {
+const ExpenseForm = ({ cancelHandler, confirmHandler, expense }) => {
 
-    const [amount, setAmountValue] = useState(expense.amount.toString())
-    const [date, setDateValue] = useState(expense.date)
-    const [description, setDescriptionValue] = useState(expense.description)
+    const [amount, setAmountValue] = useState(expense?.amount?.toString() || '')
+    const [date, setDateValue] = useState(expense?.date || '')
+    const [description, setDescriptionValue] = useState(expense?.description || '')
 
     const handleSubmit = () => {
         const dateValue = new Date(date) 
@@ -14,7 +15,7 @@ const ExpenseForm = ({ confirmHandler, expense }) => {
     }
 
   return (
-    <View style={style.form}>
+    <ScrollView keyboardShouldPersistTaps='handled' style={style.form}>
         <Text style={style.title}>Expense</Text>
         <View style={style.rowInputContainer}>
             <Input style={style.rowInput} label='Amount' textInputConfig={{
@@ -34,8 +35,11 @@ const ExpenseForm = ({ confirmHandler, expense }) => {
             value: description,
             onChangeText: value => setDescriptionValue(value)
         }}/>
-        <Button title="PRess" onPress={handleSubmit} />
-    </View>
+        <View style={style.buttons}>
+            <Button style={style.button} onPress={cancelHandler}>Cancel</Button>
+            <Button style={style.button} onPress={handleSubmit}>{expense ? 'Update' : 'Add'}</Button>
+        </View>
+    </ScrollView>
   )
 }
 
@@ -57,5 +61,15 @@ const style = StyleSheet.create({
     },
     rowInput: {
         flex: 1,
+    },
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    button: {
+        minWidth: 120,
+        marginHorizontal: 8,
+        fontSize: 20,
     }
 })

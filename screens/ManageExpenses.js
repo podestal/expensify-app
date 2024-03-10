@@ -43,11 +43,8 @@ const ManageExpenses = ({ route, navigation }) => {
         <ExpenseForm 
             confirmHandler={confirmHandler}
             expense={{ amount, date, description }}
+            cancelHandler={cancelHandler}
         />
-        <View style={styles.buttons}>
-            <Button style={styles.button} onPress={cancelHandler}>Cancel</Button>
-            <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
-        </View>
         {isEditing && (
             <View style={styles.deleteContainer}>
                 <IconButton icon='trash' size={30} onPress={deleteExpenseHandler}/>
