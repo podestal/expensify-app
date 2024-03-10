@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ScrollView } from "react-native"
+import { View, StyleSheet, Text, ScrollView, Alert } from "react-native"
 import { useState } from "react"
 import Input from "./Input"
 import Button from "../UI/Button"
@@ -10,8 +10,21 @@ const ExpenseForm = ({ cancelHandler, confirmHandler, expense }) => {
     const [description, setDescriptionValue] = useState(expense?.description || '')
 
     const handleSubmit = () => {
-        const dateValue = new Date(date) 
-        confirmHandler({ amount: parseFloat(amount), date:dateValue, description })
+
+        const parseAmount = parseFloat(amount)
+        const amountIsValid = parseAmount > 0
+
+        const dateValue = new Date(date)
+        const dateIsValid = dateValue.toString() !== 'Invalid Date' 
+
+        const descriptionIsValid = description.trim().length > 0
+
+        if (!amountIsValid && !dateIsValid && !descriptionIsValid) {
+            Alert.alert('Invalid Input', 'Please check your input values')
+            return
+        }
+
+        confirmHandler({ amount: parseAmount, date:dateValue, description })
     }
 
   return (
@@ -37,7 +50,7 @@ const ExpenseForm = ({ cancelHandler, confirmHandler, expense }) => {
         }}/>
         <View style={style.buttons}>
             <Button style={style.button} onPress={cancelHandler}>Cancel</Button>
-            <Button style={style.button} onPress={handleSubmit}>{expense ? 'Update' : 'Add'}</Button>
+            <Button style={style.button} onPress={handleSubmit}>{expense?.amount ? 'Update' : 'Add'}</Button>
         </View>
     </ScrollView>
   )
